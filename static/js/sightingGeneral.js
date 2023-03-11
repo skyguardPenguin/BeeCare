@@ -52,7 +52,9 @@ $(function () {
                     contentInfo.push(liststring);
                     contentStatus.push(listboolean);
                     dataSightingBees.push([listSightingBee]);
-                    contentImage.push("https://res.cloudinary.com/dwxkhmtb3/" + listImage);
+                   // Antiguo método para la obtención de imágenes a través de cloudinary.
+                   // contentImage.push("https://res.cloudinary.com/dwxkhmtb3/" + listImage);
+                   contentImage.push("../../Beecare/" + listImage);
                 }
             }
 

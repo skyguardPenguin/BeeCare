@@ -257,7 +257,7 @@ STATICFILES_DIRS = [
 # |=| Esta ruta se utilizará para los     |=|
 # |=| archivos multimedia del proyecto.   |=|
 # |=========================================|
-
+MEDIA_ROOT = os.path.join(BASE_DIR, 'dbfiles')
 # |=========================================|
 # |=====|  DIRECTORIO DE MULTIMEDIA   |=====|
 # |=========================================|
@@ -265,9 +265,10 @@ STATICFILES_DIRS = [
 # |=========================================|
 
 MEDIA_URL = '/Beecare/'
-DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+#DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
-#MEDIA_ROOT = os.path.join(BASE_DIR, 'static/img')
+#DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorag0e'
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field

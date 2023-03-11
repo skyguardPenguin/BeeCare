@@ -36,7 +36,9 @@
       {% for sighting in sightings %}
       <div class="col-xxl-4">
         <div class="card" style="border-top-left-radius: 20px;border-top-right-radius: 20px;border-bottom-right-radius: 20px;border-bottom-left-radius: 20px;">
-          <img class="card-img-top w-100 d-block fit-cover" style="height: 200px;border-top-left-radius: 20px;border-top-right-radius: 20px;" src="https://res.cloudinary.com/dwxkhmtb3/{{sighting.sighPicture}}" />
+          <!-- Antiguo método para la recuperación de imágenes a través de cloudinary. -->
+          <!-- <img class="card-img-top w-100 d-block fit-cover" style="height: 200px;border-top-left-radius: 20px;border-top-right-radius: 20px;" src="https://res.cloudinary.com/dwxkhmtb3/{{sighting.sighPicture}}" /> -->
+          <img class="card-img-top w-100 d-block fit-cover" style="height: 200px;border-top-left-radius: 20px;border-top-right-radius: 20px;" src="../../Beecare/{{sighting.sighPicture}}" />
           <div class="card-body p-4" style="border-bottom-right-radius: 20px;border-bottom-left-radius: 20px;">
             <p class="text-{% if sighting.sighApproved %}primary{% else %}danger{% endif %} card-text mb-0">Avistamiento 
               {% if sighting.sighApproved %}

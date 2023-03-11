@@ -6,7 +6,8 @@ static/img/*
 !static/img/icons
 !static/img/favicon
 !static/img/profile
-
+#Runtime files
+dbfiles/
 # migrations
 apps/**/**/migrations/*
 !apps/**/**/migrations/__init__.py*

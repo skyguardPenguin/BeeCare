@@ -105,7 +105,7 @@ def get_img_sighting(instance,filename):
 # |=========================================|
 # |========| MODELO SIGHTING (memb) |=======|
 # |=========================================|
-###
+####
 class sighting (models.Model):
     sighLat = models.DecimalField(max_digits=32,decimal_places=16, blank=True,null=True)
     sighLng = models.DecimalField(max_digits=32,decimal_places=16, blank=True, null=True)

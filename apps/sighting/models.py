@@ -6,6 +6,7 @@
 # |=====|       BIBLIOTECAS BASE      |=====|
 # |=========================================|
 
+
 from django.db import models
 # |=========================================|
 # |=====|       BIBLIOTECAS BASE      |=====|
@@ -15,10 +16,12 @@ from django.db import models
 # |=========================================|
 # |=====|     BIBLILIOTECAS EXTRAS    |=====|
 # |=========================================|
-
+import datetime
+from uuid import uuid4
+import os
 from pathlib import Path
 from apps.member.models import member
-
+from beecare import settings
 # |=============================================================|
 # |===============|           MODELOS           |===============|
 # |=============================================================|
@@ -73,13 +76,31 @@ class bee (models.Model):
     def __str__(self):
         return self.beeName
     
-# |=| Método para guardar imagenes de los |=|
-# |=| avistamientos realizados por los    |=|
-# |=| miembros                            |=|
+# |=| Método antiguo para guardar imagenes de los |=|
+# |=| avistamientos realizados por los            |=|
+# |=| miembros (cloudinary)                       |=|
 
+# def get_img_sighting(instance,filename):
+#     extension = Path(filename).suffix
+#     return 'Sightings/sighting_%s/sight.%s' % (instance.sighMember,extension)
+
+
+# |=| Método actual para guardar imagenes de los  |=|
+# |=| avistamientos realizados por los            |=|
+# |=| miembros (cloudinary)                       |=|
 def get_img_sighting(instance,filename):
     extension = Path(filename).suffix
-    return 'Sightings/sighting_%s/sight.%s' % (instance.sighMember,extension)
+    today = datetime.datetime.now()
+    year = today.strftime("%Y/")
+    month = today.strftime("%m/")
+    day = today.strftime("%d/")
+    time = today.strftime("%H%M%S")
+    uuid = uuid4().hex
+    route = '%s/%s/%s' % (year,month, day)
+    return 'Sightings/%s/%s_%s_%s%s' % (route,instance.sighBee,uuid,time,extension)
+
+
+
 
 # |=========================================|
 # |========| MODELO SIGHTING (memb) |=======|

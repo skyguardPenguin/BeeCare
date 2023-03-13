@@ -14,6 +14,11 @@ from django.urls import path, include
 
 # |=| Biblioteca que permite redireccionar|=|
 from django.shortcuts import redirect
+# |=| Acceso al archivo settings del proyecto|=|
+from beecare import settings
+# |=| Biblioteca para importar el MEDIA_URL de static|=|
+from django.conf.urls.static import static
+
 # |=| Biblioteca que permite personalizar la página de error 404 |=|
 # from django.conf.urls import handler404
 
@@ -49,3 +54,9 @@ urlpatterns = [
 ]
 
 # handler404 = 'apps.member.views.error404'
+
+# |=====================================================|
+# |========|   DIRECTORIO DE IMÁGENES PARA MODO DEBUG   |========|
+# |=====================================================|
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

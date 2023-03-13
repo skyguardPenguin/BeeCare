@@ -11,6 +11,7 @@ dbfiles/
 
 #IIS deploy 
 web.config
+.bat
 # migrations
 apps/**/**/migrations/*
 !apps/**/**/migrations/__init__.py*

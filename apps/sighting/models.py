@@ -120,6 +120,6 @@ class sighting (models.Model):
         )
     sighMember = models.ForeignKey(member,on_delete=models.CASCADE)
     migrationTest = models.BooleanField(default=True)
-
+    migrationTest2 = models.BooleanField(default=True)
     def __str__(self):
         return "%s %s" % (self.sighDate,self.sighApproved)

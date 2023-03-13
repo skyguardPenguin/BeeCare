@@ -8,6 +8,9 @@ static/img/*
 !static/img/profile
 #Runtime files
 dbfiles/
+
+#IIS deploy 
+web.config
 # migrations
 apps/**/**/migrations/*
 !apps/**/**/migrations/__init__.py*

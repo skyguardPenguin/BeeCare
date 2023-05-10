@@ -32,11 +32,13 @@
       </div>
     </div>
     <div class="row gy-4 row-cols-1 row-cols-md-2 row-cols-xl-3">
+    <div id="gallery-token" data-token="{{ token }}" onload=""></div>
       <!-- Tarjetas de avistamientos -->
       {% for sighting in sightings %}
       <div class="col-xxl-4">
         <div class="card" style="border-top-left-radius: 20px;border-top-right-radius: 20px;border-bottom-right-radius: 20px;border-bottom-left-radius: 20px;">
-          <img class="card-img-top w-100 d-block fit-cover" style="height: 200px;border-top-left-radius: 20px;border-top-right-radius: 20px;" src="https://res.cloudinary.com/dwxkhmtb3/{{sighting.sighPicture}}" />
+{#          <img class="card-img-top w-100 d-block fit-cover" style="height: 200px;border-top-left-radius: 20px;border-top-right-radius: 20px;" src="https://res.cloudinary.com/dwxkhmtb3/{{sighting.sighPicture}}" />#}
+          <img id="sighting_{{ forloop.counter }}" class="card-img-top w-100 d-block fit-cover" style="height: 200px;border-top-left-radius: 20px;border-top-right-radius: 20px;" src="" onload="getImgURL({{ sighting.sighPicture}}, {{ token }}, {{ forloop.counter }}" />
           <div class="card-body p-4" style="border-bottom-right-radius: 20px;border-bottom-left-radius: 20px;">
             <p class="text-{% if sighting.sighApproved %}primary{% else %}danger{% endif %} card-text mb-0">Avistamiento 
               {% if sighting.sighApproved %}

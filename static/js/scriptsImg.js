@@ -28,5 +28,28 @@ function autoField_first_name(){
    let user_mail = document.getElementById("membEmail").value;
    document.getElementById("username").value = user_mail;
   }
- 
+
+  function getImgURL(url, token,counter){
+    let src ='';
+
+    return fetch(url, {
+        headers: {
+        'Authorization': 'Bearer ' + token
+        }
+    })
+    .then(response => {
+    if (response.ok) {
+        src = URL.createObjectURL(response.blob());
+        let imgTag= document.getElementById('sightnig_'+counter);
+        imgTag.src= src;
+        return src;
+    } else {
+        console.error('Error al cargar la imagen:', response.status);
+    }
+    }).catch(error => {
+        console.error('Error al cargar la imagen:', error);
+    });
+
+
+}
  

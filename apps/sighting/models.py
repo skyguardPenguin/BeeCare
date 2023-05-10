@@ -114,7 +114,7 @@ def get_img_sighting(instance,filename):
 class sighting (models.Model):
     sighLat = models.DecimalField(max_digits=32,decimal_places=16, blank=True,null=True)
     sighLng = models.DecimalField(max_digits=32,decimal_places=16, blank=True, null=True)
-    sighPicture = models.ImageField(upload_to=get_img_sighting,blank=True)
+    sighPicture = models.ImageField(max_length=200,upload_to=get_img_sighting,blank=True)
     sighComment = models.CharField(max_length=1024)
     sighDate = models.DateTimeField(auto_now_add=True,auto_now=False)
     sighApproved = models.BooleanField(default=False)

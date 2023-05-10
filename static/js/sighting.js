@@ -55,7 +55,8 @@ $(function () {
                     contentInfo.push(liststring);
                     contentStatus.push(listboolean);
                     dataSightingBees.push([listSightingBee]);
-                    contentImage.push("https://res.cloudinary.com/dwxkhmtb3/" + listImage);
+                    // contentImage.push("https://res.cloudinary.com/dwxkhmtb3/" + listImage);
+                    contentImage.push(listImage);
                 }
             }
 

@@ -16,7 +16,7 @@ from django.contrib import messages
 # |=====|     BIBLILIOTECAS EXTRAS    |=====|
 # |=========================================|
 from abc import abstractmethod
-
+import apps.gallery.service as service
 # |=========================================|
 # |=====|     REFERENCIAS A MODELOS   |=====|
 # |=========================================|
@@ -67,6 +67,7 @@ def sightingRegister(request):
         form3_gender = GenderForm(request.POST)
         form4_species = SpeciesForm(request.POST)
         form5_bee = BeeForm(request.POST)
+        # form6_sighting = SightingForm(request.POST,request.FILES)
         form6_sighting = SightingForm(request.POST,request.FILES)
         form7_field = FieldForm(request.POST)
 
@@ -162,25 +163,31 @@ def sightingRegister(request):
                             # |=| Válidación de formulario de sighting |=|
                             # |==========================================|
                             if form6_sighting.is_valid():
-                                sighLat = form6_sighting.cleaned_data.get('sighLat')
-                                sighLng = form6_sighting.cleaned_data.get('sighLng')
+                                # sighLat = form6_sighting.cleaned_data.get('sighLat')
+                                # sighLng = form6_sighting.cleaned_data.get('sighLng')
                                 sighPicture = form6_sighting.cleaned_data.get('sighPicture')
-                                sighComment = form6_sighting.cleaned_data.get('sighComment')
-                                # |==========================================| 
-                                # |=|      get_or_created para sighting    |=|
-                                # |==========================================| 
-                                sigh = sighting.objects.create(
-                                sighLat = sighLat,
-                                sighLng = sighLng,
-                                sighPicture = sighPicture,
-                                sighComment = sighComment,
-                                sighApproved = False,
-                                sighBee = beee,
-                                sighMember = request.user.member,  
-                                ) 
-                                print('Si cargo chido 6')
+                                # sighComment = form6_sighting.cleaned_data.get('sighComment')
+                                # # |==========================================|
+                                # # |=|      get_or_created para sighting    |=|
+                                # # |==========================================|
+                                # sigh = sighting.objects.create(
+                                # sighLat = sighLat,
+                                # sighLng = sighLng,
+                                # sighPicture = sighPicture,
+                                # sighComment = sighComment,
+                                # sighApproved = False,
+                                # sighBee = beee,
+                                # sighMember = request.user.member,
+                                # )
+                                # print('Si cargo chido 6')
                                 # |=|     Guardado de datos para sighting  |=|
-                                sigh.save()
+                                try:
+                                    form6_sighting.save(sighPicture,beee,commit=True)
+                                    print('Si cargo chido 6')
+                                except Exception as e:
+                                    print("Error: ", e.args)
+
+
 
                                 # |==========================================|
                                 # |=|          Validación de field         |=|
@@ -285,10 +292,13 @@ def sightingMapOwn(request):
     mySightings = sighting.objects.all().filter(
         sighMember=request.user.member
         ).order_by('sighApproved')[:6]
-        
+
+    token = service.getToken()
+
     context = { 
         'sightings': mySightings,
-        'avist':'active',
+        'avist': 'active',
+        'token': token
     }
     return render(request,'sighting/sightings.html', context)
 
